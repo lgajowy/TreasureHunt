@@ -11,13 +11,13 @@ import groovy.transform.CompileStatic
  *  it will not be found.
  */
 @CompileStatic
-class TreasureHunt {
+class FunctionalTreasureHunt {
 
     private final int[][] gameField
 
     private final int segmentCount
 
-    TreasureHunt(int[][] gameField) {
+    FunctionalTreasureHunt(int[][] gameField) {
         this.gameField = gameField
         this.segmentCount = gameField.length * gameField[0].length
     }

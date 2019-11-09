@@ -1,10 +1,9 @@
 package com.lgajowy.treasurehunt.domain
 
-import com.lgajowy.treasurehunt.domain.TreasureHunt
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class TreasureHuntTest extends Specification {
+class FunctionalTreasureHuntTest extends Specification {
 
     private final int[][] TEST_GAME_FIELD = [[55, 14, 25, 52, 21],
                                              [44, 31, 11, 53, 43],
@@ -15,7 +14,7 @@ class TreasureHuntTest extends Specification {
     @Unroll
     def "should show proper path to treasure when starting from row #row and column #column"(int row, int column, List<Integer> steps) {
         given:
-        TreasureHunt treasureHunt = new TreasureHunt(TEST_GAME_FIELD)
+        FunctionalTreasureHunt treasureHunt = new FunctionalTreasureHunt(TEST_GAME_FIELD)
 
         expect:
         treasureHunt.findTreasure(row, column) == Optional.of(steps)
@@ -33,7 +32,7 @@ class TreasureHuntTest extends Specification {
         given:
         int[][] gameFieldWithoutTheTreasure = [[11, 11],
                                                [12, 12]]
-        TreasureHunt treasureHunt = new TreasureHunt(gameFieldWithoutTheTreasure)
+        FunctionalTreasureHunt treasureHunt = new FunctionalTreasureHunt(gameFieldWithoutTheTreasure)
 
         when:
         Optional<List<Integer>> stepsToFindTheTreasure = treasureHunt.findTreasure(2, 2)
@@ -49,7 +48,7 @@ class TreasureHuntTest extends Specification {
                                                [24, 13, 45, 12, 34],
                                                [42, 22, 44, 32, 41],
                                                [55, 23, 33, 54, 15]]
-        TreasureHunt treasureHunt = new TreasureHunt(gameFieldWithoutTheTreasure)
+        FunctionalTreasureHunt treasureHunt = new FunctionalTreasureHunt(gameFieldWithoutTheTreasure)
 
         when:
         Optional<List<Integer>> stepsToFindTheTreasure = treasureHunt.findTreasure(1, 1)

@@ -1,6 +1,6 @@
 package com.lgajowy.treasurehunt.services
 
-import com.lgajowy.treasurehunt.domain.TreasureHunt
+import com.lgajowy.treasurehunt.domain.FunctionalTreasureHunt
 import groovy.transform.CompileStatic
 import io.micronaut.http.HttpResponse
 import javax.inject.Inject
@@ -14,10 +14,10 @@ class TreasureService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TreasureService.class);
 
-    private TreasureHunt treasureHunt
+    private FunctionalTreasureHunt treasureHunt
 
     @Inject
-    TreasureService(TreasureHunt treasureHunt) {
+    TreasureService(FunctionalTreasureHunt treasureHunt) {
         this.treasureHunt = treasureHunt
     }
 

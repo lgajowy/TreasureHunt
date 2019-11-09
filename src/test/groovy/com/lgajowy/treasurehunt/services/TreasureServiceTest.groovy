@@ -1,6 +1,6 @@
 package com.lgajowy.treasurehunt.services
 
-import com.lgajowy.treasurehunt.domain.TreasureHunt
+import com.lgajowy.treasurehunt.domain.FunctionalTreasureHunt
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import spock.lang.Specification
@@ -9,7 +9,7 @@ class TreasureServiceTest extends Specification {
 
     TreasureService treasureService
 
-    TreasureHunt treasureHuntMock = Mock()
+    FunctionalTreasureHunt treasureHuntMock = Mock()
 
     void setup() {
         treasureService = new TreasureService(treasureHuntMock)
