@@ -1,0 +1,15 @@
+.idea/
+.idea_modules/
+*.iws
+out
+*.iml
+
+.gradle
+build/
+gradle-app.setting
+.gradletasknamecache
+
+classes/
+
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties

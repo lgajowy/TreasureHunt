@@ -1,0 +1,22 @@
+buildscript {
+    ext {
+        groovyVersion = '2.5.8'
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'idea'
+}
+
+group 'com.lgajowy'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy:${groovyVersion}"
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+}
