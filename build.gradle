@@ -12,6 +12,7 @@ buildscript {
 plugins {
     id 'groovy'
     id 'idea'
+    id 'application'
 }
 
 group 'com.lgajowy'
@@ -20,6 +21,8 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+mainClassName = "com.lgajowy.treasurehunt.Application"
 
 dependencies {
     compileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
