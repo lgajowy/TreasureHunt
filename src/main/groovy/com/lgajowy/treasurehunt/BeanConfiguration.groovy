@@ -1,13 +1,20 @@
 package com.lgajowy.treasurehunt
 
 import com.lgajowy.treasurehunt.domain.FunctionalTreasureHunt
+import com.lgajowy.treasurehunt.domain.TreasureHunt
 import io.micronaut.context.annotation.Bean
 import io.micronaut.context.annotation.Factory
 
+
+/**
+ * Confiuguration of Beans used in this application.
+ * Switch implementation of TreasureHunt interface if you want to use the Object oriented alternative.
+ */
 @Factory
 class BeanConfiguration {
+
     @Bean
-    FunctionalTreasureHunt treasureHunt() {
+    TreasureHunt treasureHunt() {
         int[][] gameField = [[55, 14, 25, 52, 21],
                              [44, 31, 11, 53, 43],
                              [24, 13, 45, 12, 34],

@@ -11,40 +11,34 @@ import groovy.transform.CompileStatic
  *  it will not be found.
  */
 @CompileStatic
-class FunctionalTreasureHunt {
+class FunctionalTreasureHunt implements TreasureHunt {
 
-    private final int[][] gameField
+    private final int[][] GAME_FIELD
 
-    private final int segmentCount
+    private final int SEGMENT_COUNT
 
-    FunctionalTreasureHunt(int[][] gameField) {
-        this.gameField = gameField
-        this.segmentCount = gameField.length * gameField[0].length
+    FunctionalTreasureHunt(int[][] GAME_FIELD) {
+        this.GAME_FIELD = GAME_FIELD
+        this.SEGMENT_COUNT = GAME_FIELD.length * GAME_FIELD[0].length
     }
 
-    /**
-     * Finds treasure in a given game field.
-     *
-     * @param startRow - row position value from 1 to gameField.length (inclusive)
-     * @param startColumn - column position value from 1 to gameField[0].length (inclusive)
-     * @return Optional of list of steps to find the treasure or empty() if treasure could not be found.
-     */
+    @Override
     Optional<List<Integer>> findTreasure(int startRow, int startColumn) {
         return lookForTreasure(startRow - 1, startColumn - 1, [], 0)
     }
 
     private Optional<List<Integer>> lookForTreasure(int row, int column, List<Integer> stepsSoFar, int stepCount) {
-        if (stepCount > segmentCount) {
+        if (stepCount > SEGMENT_COUNT) {
             return Optional.empty()
         }
 
         Integer newStep = "${row + 1}${column + 1}".toInteger()
         stepsSoFar.add(newStep)
 
-        if ("${row + 1}${column + 1}" == "${gameField[row][column]}") {
+        if ("${row + 1}${column + 1}" == "${GAME_FIELD[row][column]}") {
             return Optional.of(stepsSoFar)
         } else {
-            int value = gameField[row][column]
+            int value = GAME_FIELD[row][column]
             int newRow = (value / 10) - 1 as Integer
             int newCol = (value % 10) - 1
 
