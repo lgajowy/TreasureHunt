@@ -1,6 +1,7 @@
 package com.lgajowy.treasurehunt.services
 
-
+import com.lgajowy.treasurehunt.domain.Path
+import com.lgajowy.treasurehunt.domain.Position
 import com.lgajowy.treasurehunt.domain.TreasureHunt
 import groovy.transform.CompileStatic
 import io.micronaut.http.HttpResponse
@@ -22,12 +23,12 @@ class TreasureService {
         this.treasureHunt = treasureHunt
     }
 
-    HttpResponse getPathToTreasure(Integer position) {
-        Tuple2 pos = parsePosition(position)
-        Optional stepsToTreasure = treasureHunt.findTreasure(pos.first, pos.second)
+    HttpResponse getPathToTreasure(Integer startingPosition) {
+        Position position = new Position(startingPosition)
+        Optional<Path> pathToTreasure = treasureHunt.findTreasure(position.row, position.column)
 
-        if (stepsToTreasure.isPresent()) {
-            List<String> steps = convertStepsToStrings(stepsToTreasure.get())
+        if (pathToTreasure.isPresent()) {
+            List<String> steps = pathToTreasure.get().toStringList()
             logSteps(steps)
             return HttpResponse.ok(['pathToTreasure': steps])
 
@@ -44,17 +45,5 @@ class TreasureService {
             messageBuilder.append('\n')
         }
         LOG.info(messageBuilder.toString());
-    }
-
-    private static Tuple2<Integer, Integer> parsePosition(Integer positionNumber) {
-        return new Tuple2<Integer, Integer>(positionNumber / 10 as Integer, positionNumber % 10)
-    }
-
-    private static List<String> convertStepsToStrings(List<Integer> steps) {
-        steps.collect {
-            Integer row = it / 10 as Integer
-            Integer column = it % 10
-            "${row} ${column}" as String
-        }
     }
 }

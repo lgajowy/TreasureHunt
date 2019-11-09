@@ -17,7 +17,7 @@ class FunctionalTreasureHuntTest extends Specification {
         TreasureHunt treasureHunt = new FunctionalTreasureHunt(TEST_GAME_FIELD)
 
         expect:
-        treasureHunt.findTreasure(row, column) == Optional.of(steps)
+        treasureHunt.findTreasure(row, column).get().toIntegers() == steps
 
         where:
         row | column | steps
@@ -35,10 +35,10 @@ class FunctionalTreasureHuntTest extends Specification {
         TreasureHunt treasureHunt = new FunctionalTreasureHunt(gameFieldWithoutTheTreasure)
 
         when:
-        Optional<List<Integer>> stepsToFindTheTreasure = treasureHunt.findTreasure(2, 2)
+        Optional<Path> stepsToFindTheTreasure = treasureHunt.findTreasure(2, 2)
 
         then:
-        Optional.of([22, 12, 11]) == stepsToFindTheTreasure
+        [22, 12, 11] == stepsToFindTheTreasure.get().toIntegers()
     }
 
     def "should not find the treasure when it's not there"() {
@@ -51,7 +51,7 @@ class FunctionalTreasureHuntTest extends Specification {
         TreasureHunt treasureHunt = new FunctionalTreasureHunt(gameFieldWithoutTheTreasure)
 
         when:
-        Optional<List<Integer>> stepsToFindTheTreasure = treasureHunt.findTreasure(1, 1)
+        Optional<Path> stepsToFindTheTreasure = treasureHunt.findTreasure(1, 1)
 
         then:
         Optional.empty() == stepsToFindTheTreasure

@@ -24,7 +24,7 @@ class OOTreasureHunt implements TreasureHunt {
     }
 
     @Override
-    Optional<List<Integer>> findTreasure(int startRow, int startColumn) {
+    Optional<Path> findTreasure(int startRow, int startColumn) {
         Path pathToTreasure = new Path()
         Position currentPosition = new Position(startRow, startColumn)
 
@@ -33,62 +33,11 @@ class OOTreasureHunt implements TreasureHunt {
             pathToTreasure.addNewStep(currentPosition)
 
             if (hint == currentPosition) {
-                return Optional.of(pathToTreasure.toIntegers())
+                return Optional.of(pathToTreasure)
             } else {
                 currentPosition = new Position(hint.row, hint.column)
             }
         }
-
         return Optional.empty()
-    }
-
-    private class Position {
-
-        private int row
-
-        private int column
-
-        Position(int row, int column) {
-            this.row = row
-            this.column = column
-        }
-
-        Position(int position) {
-            this.row = position / 10 as Integer
-            this.column = position % 10
-        }
-
-        Integer toInteger() {
-            return (row * 10) + column
-        }
-
-        boolean equals(o) {
-            if (this.is(o)) return true
-            if (getClass() != o.class) return false
-
-            Position position = (Position) o
-
-            if (column != position.column) return false
-            if (row != position.row) return false
-
-            return true
-        }
-    }
-
-    private class Path {
-
-        private List<Position> steps
-
-        Path() {
-            this.steps = new ArrayList<>()
-        }
-
-        void addNewStep(Position step) {
-            this.steps.add(step)
-        }
-
-        List<Integer> toIntegers() {
-            steps.collect { it.toInteger() }
-        }
     }
 }

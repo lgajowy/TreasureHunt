@@ -23,17 +23,16 @@ class FunctionalTreasureHunt implements TreasureHunt {
     }
 
     @Override
-    Optional<List<Integer>> findTreasure(int startRow, int startColumn) {
-        return lookForTreasure(startRow - 1, startColumn - 1, [], 0)
+    Optional<Path> findTreasure(int startRow, int startColumn) {
+        return lookForTreasure(startRow - 1, startColumn - 1, new Path(), 0)
     }
 
-    private Optional<List<Integer>> lookForTreasure(int row, int column, List<Integer> stepsSoFar, int stepCount) {
+    private Optional<Path> lookForTreasure(int row, int column, Path stepsSoFar, int stepCount) {
         if (stepCount > SEGMENT_COUNT) {
             return Optional.empty()
         }
 
-        Integer newStep = "${row + 1}${column + 1}".toInteger()
-        stepsSoFar.add(newStep)
+        stepsSoFar.addNewStep(new Position("${row + 1}${column + 1}".toInteger()))
 
         if ("${row + 1}${column + 1}" == "${GAME_FIELD[row][column]}") {
             return Optional.of(stepsSoFar)
