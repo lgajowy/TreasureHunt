@@ -5,6 +5,7 @@ buildscript {
         micronautVersion = '1.2.0'
         bytebuddyVersion = '1.10.2'
         objenesisVersion = '3.1'
+        slf4jVersion = '1.7.29'
     }
 }
 
@@ -31,6 +32,7 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
 
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
