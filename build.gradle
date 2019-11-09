@@ -2,6 +2,9 @@ buildscript {
     ext {
         groovyVersion = '2.5.8'
         spockVersion = '1.3-groovy-2.5'
+        micronautVersion = '1.2.0'
+        bytebuddyVersion = '1.10.2'
+        objenesisVersion = '3.1'
     }
 }
 
@@ -18,7 +21,29 @@ repositories {
 }
 
 dependencies {
+    compileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
+    compileOnly "io.micronaut:micronaut-inject-groovy"
+    compileOnly "io.micronaut.configuration:micronaut-openapi"
+    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation "io.micronaut:micronaut-runtime-groovy"
+    implementation "io.micronaut:micronaut-validation"
+    implementation "io.micronaut:micronaut-http-server-netty"
+    implementation "io.micronaut:micronaut-http-client"
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+
     testCompile "org.spockframework:spock-core:${spockVersion}"
+    testCompileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
+
+    // For spock mocking
+    testCompile "net.bytebuddy:byte-buddy:${bytebuddyVersion}"
+    testCompile "org.objenesis:objenesis:${objenesisVersion}"
+
+    testImplementation "io.micronaut:micronaut-inject-groovy"
+    testImplementation "io.micronaut.test:micronaut-test-spock"
+    testImplementation("org.spockframework:spock-core") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
 }
