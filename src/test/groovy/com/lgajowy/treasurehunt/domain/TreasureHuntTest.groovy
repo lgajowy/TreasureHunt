@@ -1,5 +1,6 @@
-package com.lgajowy.treasurehunt
+package com.lgajowy.treasurehunt.domain
 
+import com.lgajowy.treasurehunt.domain.TreasureHunt
 import spock.lang.Specification
 import spock.lang.Unroll
 

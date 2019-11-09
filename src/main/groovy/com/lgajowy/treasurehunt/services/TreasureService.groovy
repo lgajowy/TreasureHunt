@@ -1,5 +1,6 @@
-package com.lgajowy.treasurehunt
+package com.lgajowy.treasurehunt.services
 
+import com.lgajowy.treasurehunt.domain.TreasureHunt
 import groovy.transform.CompileStatic
 import javax.inject.Inject
 import javax.inject.Singleton

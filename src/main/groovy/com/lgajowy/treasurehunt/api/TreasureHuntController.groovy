@@ -1,5 +1,6 @@
-package com.lgajowy.treasurehunt
+package com.lgajowy.treasurehunt.api
 
+import com.lgajowy.treasurehunt.services.TreasureService
 import groovy.transform.CompileStatic
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller

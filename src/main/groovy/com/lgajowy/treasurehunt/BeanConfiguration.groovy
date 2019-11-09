@@ -1,5 +1,6 @@
 package com.lgajowy.treasurehunt
 
+import com.lgajowy.treasurehunt.domain.TreasureHunt
 import io.micronaut.context.annotation.Bean
 import io.micronaut.context.annotation.Factory
 

@@ -1,5 +1,7 @@
-package com.lgajowy.treasurehunt
+package com.lgajowy.treasurehunt.services
 
+import com.lgajowy.treasurehunt.domain.TreasureHunt
+import com.lgajowy.treasurehunt.services.TreasureService
 import spock.lang.Specification
 
 class TreasureServiceTest extends Specification {

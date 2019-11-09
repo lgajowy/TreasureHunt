@@ -1,4 +1,4 @@
-package com.lgajowy.treasurehunt
+package com.lgajowy.treasurehunt.domain
 
 import groovy.transform.CompileStatic
 
