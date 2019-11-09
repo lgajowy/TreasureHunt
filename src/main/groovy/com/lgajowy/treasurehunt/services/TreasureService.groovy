@@ -2,6 +2,7 @@ package com.lgajowy.treasurehunt.services
 
 import com.lgajowy.treasurehunt.domain.TreasureHunt
 import groovy.transform.CompileStatic
+import io.micronaut.http.HttpResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.slf4j.Logger
@@ -20,17 +21,18 @@ class TreasureService {
         this.treasureHunt = treasureHunt
     }
 
-    Optional<List<String>> getPathToTreasure(String position) {
+    HttpResponse getPathToTreasure(Integer position) {
         Tuple2 pos = parsePosition(position)
         Optional stepsToTreasure = treasureHunt.findTreasure(pos.first, pos.second)
 
         if (stepsToTreasure.isPresent()) {
             List<String> steps = convertStepsToStrings(stepsToTreasure.get())
             logSteps(steps)
-            return Optional.of(steps)
+            return HttpResponse.ok(['pathToTreasure': steps])
+
         } else {
             LOG.info("NO TREASURE")
-            return Optional.empty()
+            return HttpResponse.notFound()
         }
     }
 
@@ -43,8 +45,7 @@ class TreasureService {
         LOG.info(messageBuilder.toString());
     }
 
-    private static Tuple2<Integer, Integer> parsePosition(String position) {
-        Integer positionNumber = position.toInteger()
+    private static Tuple2<Integer, Integer> parsePosition(Integer positionNumber) {
         return new Tuple2<Integer, Integer>(positionNumber / 10 as Integer, positionNumber % 10)
     }
 

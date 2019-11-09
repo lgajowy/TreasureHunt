@@ -19,13 +19,7 @@ class TreasureHuntController {
     }
 
     @Get("/treasures/{position}")
-    HttpResponse getPathToTreasure(String position) {
-        Optional<List<String>> pathToTreasure = treasureService.getPathToTreasure(position)
-
-        if (pathToTreasure.isPresent()) {
-            return HttpResponse.ok(['pathToTreasure': pathToTreasure.get()])
-        } else {
-            return HttpResponse.notFound()
-        }
+    HttpResponse getPathToTreasure(Integer position) {
+        treasureService.getPathToTreasure(position)
     }
 }
